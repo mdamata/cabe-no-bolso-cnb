@@ -2,9 +2,14 @@ from __future__ import annotations
 from datetime import datetime, timedelta
 from jose import jwt
 import bcrypt
+import os
+from dotenv import load_dotenv
 
-# Configurações de Segurança
-SECRET_KEY = "sua-chave-secreta-super-segura-e-inviolavel-cnb"
+# Carrega as variáveis de ambiente do ficheiro .env local
+load_dotenv()
+
+# Puxa a chave secreta do ambiente (com um fallback seguro para desenvolvimento local)
+SECRET_KEY = os.getenv("SECRET_KEY", "fallback-secret-key-insegura-apenas-para-testes")
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24 # Token válido por 24 horas
 

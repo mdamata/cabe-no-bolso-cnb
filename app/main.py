@@ -15,4 +15,4 @@ app.include_router(auth.router)
 
 @app.get("/")
 def read_root():
-    return {"message": "API do Cabe no Bolso (CNB) a funcionar em pleno! 🚀"}
+    return {"message": "API do Cabe no Bolso (CNB) a funcionar em pleno!"}
