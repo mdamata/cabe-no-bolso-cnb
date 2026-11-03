@@ -1,1 +1,1 @@
-from app.models.models import User, FixedExpense, Expense, Routine, Workout, StudyPlan
+from .models import User, FixedExpense, Expense, Routine, Workout, StudyPlan
