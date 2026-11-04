@@ -2,4 +2,3 @@ venv/
 __pycache__/
 .DS_Store
 .db
-SECRET_KEY=kiluminoleluango
