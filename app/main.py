@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from app.database import engine, Base
-from app.routers import auth, rotine  # <-- O 'rotine' tem de estar aqui importado!
+from app.routers import auth, rotine, workout, finance  # <-- O 'rotine' tem de estar aqui importado!
 
 # Cria automaticamente as tabelas no banco de dados local/remoto
 Base.metadata.create_all(bind=engine)
@@ -13,7 +13,8 @@ app = FastAPI(
 
 # Regista os routers na aplicação FastAPI
 app.include_router(auth.router)
-app.include_router(rotine.router)  # <-- E registado aqui embaixo
+app.include_router(rotine.router) 
+app.include_router(finance.router) # <-- E registado aqui embaixo
 
 @app.get("/")
 def read_root():
