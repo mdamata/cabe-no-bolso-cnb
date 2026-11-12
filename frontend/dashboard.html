@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - CNB</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body style="display: block !important; padding-bottom: 0;">
+
+    <div class="app-layout">
+        <!-- BARRA LATERAL (SIDEBAR) -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <h2>Cabe no Bolso</h2>
+                <p style="font-size: 12px; color: var(--text-muted);">Organização & IA</p>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item active" data-target="sec-dashboard">📊 Dashboard (G/H)</li>
+                <li class="nav-item" data-target="sec-routine">💼 Trabalho & Rotina (A)</li>
+                <li class="nav-item" data-target="sec-workouts">🏋️ Treinos (B)</li>
+                <li class="nav-item" data-target="sec-studies">📚 Estudos & IA (C)</li>
+                <li class="nav-item" data-target="sec-meals">🥗 Refeições (D)</li>
+                <li class="nav-item" data-target="sec-agenda">📅 Compromissos (E)</li>
+                <li class="nav-item" data-target="sec-finances">💰 Gastos & IA (F)</li>
+                <li class="nav-item" id="logout-btn" style="margin-top: 40px; color: #dc2626;">🚪 Sair</li>
+            </ul>
+        </nav>
+
+        <!-- CONTEÚDO PRINCIPAL -->
+        <main class="main-content">
+            
+            <!-- SECÇÃO: DASHBOARD (Resumo e Checklist) -->
+            <section id="sec-dashboard" class="page-section active">
+                <h1 class="section-title">Visão Geral</h1>
+                <div class="card"><p>Em breve: Dashboard de Checklists, Gráficos Semanais e Resumo de Categorias.</p></div>
+            </section>
+
+            <!-- SECÇÃO: ROTINA DE TRABALHO -->
+            <section id="sec-routine" class="page-section">
+                <h1 class="section-title">Rotina de Trabalho</h1>
+                
+                <div class="card">
+                    <h3>🕒 Registar Escala</h3>
+                    <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 15px;">Define os teus horários e modelo de trabalho.</p>
+                    
+                    <form id="routine-form">
+                        <div style="display: flex; gap: 15px; margin-bottom: 15px;">
+                            <div class="input-group" style="flex: 1; margin-bottom: 0;">
+                                <label>Dia da Semana</label>
+                                <select id="routine-day" required style="width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 8px;">
+                                    <option value="Segunda-feira">Segunda-feira</option>
+                                    <option value="Terça-feira">Terça-feira</option>
+                                    <option value="Quarta-feira">Quarta-feira</option>
+                                    <option value="Quinta-feira">Quinta-feira</option>
+                                    <option value="Sexta-feira">Sexta-feira</option>
+                                </select>
+                            </div>
+                            <div class="input-group" style="flex: 1; margin-bottom: 0;">
+                                <label>Modalidade</label>
+                                <select id="routine-type" required style="width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 8px;">
+                                    <option value="Presencial">Presencial (Escritório)</option>
+                                    <option value="Home Office">Home Office</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label>Horário (Ex: 09:00 às 18:00)</label>
+                            <input type="text" id="routine-time" placeholder="09:00 às 18:00" required autocomplete="off">
+                        </div>
+                        <button type="submit" class="btn-primary">Guardar Rotina</button>
+                    </form>
+                </div>
+
+                <div class="card">
+                    <h3>📅 A Minha Semana</h3>
+                    <div id="routine-list" style="margin-top: 15px;">
+                        <!-- Os dados guardados vão aparecer aqui -->
+                        <p style="color: var(--text-muted); font-size: 14px;">Nenhuma rotina registada ainda.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECÇÃO: TREINOS -->
+            <section id="sec-workouts" class="page-section">
+                <h1 class="section-title">Meus Treinos</h1>
+                
+                <div class="card">
+                    <h3>🏋️ Registar Treino</h3>
+                    <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 15px;">Adiciona o teu planeamento de treinos da semana.</p>
+                    
+                    <form id="workout-form">
+                        <div style="display: flex; gap: 15px; margin-bottom: 15px;">
+                            <div class="input-group" style="flex: 1; margin-bottom: 0;">
+                                <label>Dia da Semana</label>
+                                <select id="workout-day" required style="width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 8px;">
+                                    <option value="Segunda-feira">Segunda-feira</option>
+                                    <option value="Terça-feira">Terça-feira</option>
+                                    <option value="Quarta-feira">Quarta-feira</option>
+                                    <option value="Quinta-feira">Quinta-feira</option>
+                                    <option value="Sexta-feira">Sexta-feira</option>
+                                    <option value="Sábado">Sábado</option>
+                                    <option value="Domingo">Domingo</option>
+                                </select>
+                            </div>
+                            <div class="input-group" style="flex: 1; margin-bottom: 0;">
+                                <label>Tipo de Treino</label>
+                                <select id="workout-type" required style="width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 8px;">
+                                    <option value="Musculação">Musculação</option>
+                                    <option value="Cardio">Cardio</option>
+                                    <option value="Crossfit">Crossfit</option>
+                                    <option value="Mobilidade">Mobilidade</option>
+                                    <option value="Descanso Ativo">Descanso Ativo</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="input-group" style="margin-bottom: 15px;">
+                            <label>Descrição do Treino (Ex: Peito e Tríceps / Corrida 5km)</label>
+                            <input type="text" id="workout-desc" placeholder="Detalhes do treino..." required autocomplete="off">
+                        </div>
+                        <div class="input-group">
+                            <label>Horário (Opcional)</label>
+                            <input type="text" id="workout-time" placeholder="Ex: 07:00" autocomplete="off">
+                        </div>
+                        <button type="submit" class="btn-primary">Guardar Treino</button>
+                    </form>
+                </div>
+
+                <div class="card">
+                    <h3>📅 Calendário de Treinos</h3>
+                    <div id="workout-list" style="margin-top: 15px;">
+                        <!-- Os dados guardados vão aparecer aqui -->
+                        <p style="color: var(--text-muted); font-size: 14px;">Nenhum treino registado ainda.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECÇÃO: ESTUDOS E IA (O que já fizemos) -->
+            <section id="sec-studies" class="page-section">
+                <h1 class="section-title">Estudos & Agente IA</h1>
+                <div class="card">
+                    <h3>📚 Agente de Estudos</h3>
+                    <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 15px;">Gere um cronograma prático com base na documentação.</p>
+                    <form id="ai-study-form">
+                        <div class="input-group">
+                            <label>O que você quer aprender?</label>
+                            <input type="text" id="study-topic" placeholder="Ex: Microsserviços" required autocomplete="off">
+                        </div>
+                        <div class="input-group">
+                            <label>Material Base (Links ou Textos)</label>
+                            <input type="text" id="study-material" placeholder="Ex: Doc Oficial" required autocomplete="off">
+                        </div>
+                        <div class="input-group" style="width: 150px;">
+                            <label>Quantos dias?</label>
+                            <input type="number" id="study-days" value="3" min="1" max="10" required>
+                        </div>
+                        <button type="submit" class="btn-primary" id="btn-study-analyze">Gerar Cronograma</button>
+                    </form>
+                    <div class="ai-result" id="study-result-box" style="display: none; border-color: #bfdbfe; background: #eff6ff;">
+                        <h4 style="color: #1e40af;">📅 Cronograma Gerado!</h4>
+                        <div id="schedule-container" style="margin-top: 15px;"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECÇÃO: REFEIÇÕES -->
+            <section id="sec-meals" class="page-section">
+                <h1 class="section-title">Organização de Refeições</h1>
+                <div class="card"><p>Em breve: Planeamento alimentar.</p></div>
+            </section>
+
+            <!-- SECÇÃO: COMPROMISSOS -->
+            <section id="sec-agenda" class="page-section">
+                <h1 class="section-title">Agenda Semanal</h1>
+                <div class="card"><p>Em breve: Compromissos do dia.</p></div>
+            </section>
+
+            <!-- SECÇÃO: GASTOS E IA (O que já fizemos) -->
+            <section id="sec-finances" class="page-section">
+                <h1 class="section-title">Gestão Financeira & Agente IA</h1>
+                
+                <div class="card">
+                    <h3>🤖 Registar Gasto (IA)</h3>
+                    <form id="ai-expense-form">
+                        <div class="input-group">
+                            <input type="text" id="expense-text" placeholder="Ex: Pedi um lanche no iFood por 50 reais" required autocomplete="off">
+                        </div>
+                        <button type="submit" class="btn-primary" id="btn-analyze">Analisar com IA</button>
+                    </form>
+
+                    <div class="ai-result" id="ai-result-box">
+                        <h4>✅ Gasto Registado!</h4>
+                        <p><strong>Valor:</strong> R$ <span id="res-amount"></span></p>
+                        <p><strong>Categoria:</strong> <span id="res-category"></span></p>
+                        <p><strong>Descrição:</strong> <span id="res-desc"></span></p>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3>Gastos Fixos Mensais</h3>
+                    <p>Em breve: Tabela de gestão manual de custos fixos.</p>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
