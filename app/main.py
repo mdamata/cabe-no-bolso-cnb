@@ -1,22 +1,32 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from app.database import engine, Base
-from app.routers import auth, rotine, study, workout, finance  # <-- O 'rotine' tem de estar aqui importado!
 
-# Cria automaticamente as tabelas no banco de dados local/remoto
+# Importação de todos os módulos (routers) da nossa aplicação
+from app.routers import auth, rotine, workout, study, finance
+
+# Cria as tabelas na base de dados automaticamente ao iniciar o servidor
 Base.metadata.create_all(bind=engine)
 
+# 1. Instanciação da Aplicação
 app = FastAPI(
     title="Cabe no Bolso (CNB) API",
-    version="1.0.0",
-    description="API Backend de organização financeira, treinos e estudos com IA para portfólio."
+    description="API Full-Stack integrada com Inteligência Artificial",
+    version="1.0.0"
 )
 
-# Regista os routers na aplicação FastAPI
-app.include_router(auth.router)
-app.include_router(rotine.router) 
-app.include_router(finance.router) 
-app.include_router(study.router)# <-- E registado aqui embaixo
+# 2. Configuração do CORS (Crucial para a separação Backend/Frontend)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Na fase final de deploy, limitaremos ao domínio da Vercel
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
-@app.get("/")
-def read_root():
-    return {"message": "API do Cabe no Bolso (CNB) a funcionar em pleno! 🚀"}
+# 3. Registo de todas as rotas (Microsserviços lógicos)
+app.include_router(auth.router)
+app.include_router(rotine.router)
+app.include_router(workout.router)
+app.include_router(study.router)
+app.include_router(finance.router)
