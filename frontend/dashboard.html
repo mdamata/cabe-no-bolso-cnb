@@ -16,14 +16,14 @@
                 <p style="font-size: 12px; color: var(--text-muted);">Organização & IA</p>
             </div>
             <ul class="nav-menu">
-                <li class="nav-item active" data-target="sec-dashboard">📊 Dashboard (G/H)</li>
-                <li class="nav-item" data-target="sec-routine">💼 Trabalho & Rotina (A)</li>
-                <li class="nav-item" data-target="sec-workouts">🏋️ Treinos (B)</li>
-                <li class="nav-item" data-target="sec-studies">📚 Estudos & IA (C)</li>
-                <li class="nav-item" data-target="sec-meals">🥗 Refeições (D)</li>
-                <li class="nav-item" data-target="sec-agenda">📅 Compromissos (E)</li>
-                <li class="nav-item" data-target="sec-finances">💰 Gastos & IA (F)</li>
-                <li class="nav-item" id="logout-btn" style="margin-top: 40px; color: #dc2626;">🚪 Sair</li>
+                <li class="nav-item active" data-target="sec-dashboard">Dashboard</li>
+                <li class="nav-item" data-target="sec-routine">Trabalho & Rotina</li>
+                <li class="nav-item" data-target="sec-workouts">Treinos</li>
+                <li class="nav-item" data-target="sec-studies">Estudos & IA</li>
+                <li class="nav-item" data-target="sec-meals">Refeições</li>
+                <li class="nav-item" data-target="sec-agenda">Compromissos</li>
+                <li class="nav-item" data-target="sec-finances">Gastos & IA</li>
+                <li class="nav-item" id="logout-btn" style="margin-top: 40px; color: #dc2626; cursor: pointer;">🚪 Sair</li>
             </ul>
         </nav>
 
@@ -32,8 +32,39 @@
             
             <!-- SECÇÃO: DASHBOARD (Resumo e Checklist) -->
             <section id="sec-dashboard" class="page-section active">
-                <h1 class="section-title">Visão Geral</h1>
-                <div class="card"><p>Em breve: Dashboard de Checklists, Gráficos Semanais e Resumo de Categorias.</p></div>
+                <h1 class="section-title">Visão Geral (Dashboard)</h1>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 20px;">
+                    <div class="card" style="margin-bottom: 0;">
+                        <h3 style="color: #166534;">Saúde Financeira</h3>
+                        <div style="margin-top: 15px;">
+                            <p style="margin-bottom: 8px;"><strong>Receitas Totais:</strong> <span style="float: right; color: #16a34a;">+ R$ <span id="dash-income-total">0.00</span></span></p>
+                            <p style="margin-bottom: 8px;"><strong>Total Fixo Mensal:</strong> <span style="float: right;">- R$ <span id="dash-fixed-total">0.00</span></span></p>
+                            <p style="margin-bottom: 8px;"><strong>Gastos Variáveis (IA):</strong> <span style="float: right;">- R$ <span id="dash-var-total">0.00</span></span></p>
+                            <hr style="margin: 12px 0; border: none; border-top: 1px dashed var(--border-color);">
+                            <p style="font-size: 18px;"><strong>Saldo Livre:</strong> <span style="float: right; font-weight: bold;" id="dash-balance-total">R$ 0.00</span></p>
+                        </div>
+                    </div>
+                    
+                    <div class="card" style="margin-bottom: 0;">
+                        <h3 style="color: #1e40af;">Produtividade e Estudos</h3>
+                        <div style="margin-top: 15px;">
+                            <p style="margin-bottom: 8px;"><strong>Estudos Concluídos:</strong> <span id="dash-study-done" style="float: right; font-weight: bold; color: #166534;">0</span></p>
+                            <p style="margin-bottom: 8px;"><strong>Estudos Pendentes:</strong> <span id="dash-study-pend" style="float: right; font-weight: bold; color: #b45309;">0</span></p>
+                            <hr style="margin: 12px 0; border: none; border-top: 1px dashed var(--border-color);">
+                            <p style="font-size: 14px; color: var(--text-muted);">Mantenha o foco nas metas em andamento para melhorar as métricas.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <h3>O Meu Dia (<span id="dash-today-name" style="color: var(--primary-color);">Hoje</span>)</h3>
+                    <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 15px;">A tua checklist gerada automaticamente com base nas tuas rotinas, treinos, dieta e agenda.</p>
+                    
+                    <div id="dash-today-list" style="margin-top: 15px;">
+                        <!-- A checklist dinâmica vai aparecer aqui -->
+                    </div>
+                </div>
             </section>
 
             <!-- SECÇÃO: ROTINA DE TRABALHO -->
@@ -41,7 +72,7 @@
                 <h1 class="section-title">Rotina de Trabalho</h1>
                 
                 <div class="card">
-                    <h3>🕒 Registar Escala</h3>
+                    <h3>Registar Escala</h3>
                     <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 15px;">Define os teus horários e modelo de trabalho.</p>
                     
                     <form id="routine-form">
@@ -73,9 +104,8 @@
                 </div>
 
                 <div class="card">
-                    <h3>📅 A Minha Semana</h3>
+                    <h3>A Minha Semana</h3>
                     <div id="routine-list" style="margin-top: 15px;">
-                        <!-- Os dados guardados vão aparecer aqui -->
                         <p style="color: var(--text-muted); font-size: 14px;">Nenhuma rotina registada ainda.</p>
                     </div>
                 </div>
@@ -86,7 +116,7 @@
                 <h1 class="section-title">Meus Treinos</h1>
                 
                 <div class="card">
-                    <h3>🏋️ Registar Treino</h3>
+                    <h3>Registar Treino</h3>
                     <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 15px;">Adiciona o teu planeamento de treinos da semana.</p>
                     
                     <form id="workout-form">
@@ -115,7 +145,7 @@
                             </div>
                         </div>
                         <div class="input-group" style="margin-bottom: 15px;">
-                            <label>Descrição do Treino (Ex: Peito e Tríceps / Corrida 5km)</label>
+                            <label>Descrição do Treino</label>
                             <input type="text" id="workout-desc" placeholder="Detalhes do treino..." required autocomplete="off">
                         </div>
                         <div class="input-group">
@@ -127,37 +157,64 @@
                 </div>
 
                 <div class="card">
-                    <h3>📅 Calendário de Treinos</h3>
+                    <h3>Calendário de Treinos</h3>
                     <div id="workout-list" style="margin-top: 15px;">
-                        <!-- Os dados guardados vão aparecer aqui -->
                         <p style="color: var(--text-muted); font-size: 14px;">Nenhum treino registado ainda.</p>
                     </div>
                 </div>
             </section>
 
-            <!-- SECÇÃO: ESTUDOS E IA (O que já fizemos) -->
+           <!-- SECÇÃO: ESTUDOS E IA -->
             <section id="sec-studies" class="page-section">
                 <h1 class="section-title">Estudos & Agente IA</h1>
+                
                 <div class="card">
-                    <h3>📚 Agente de Estudos</h3>
-                    <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 15px;">Gere um cronograma prático com base na documentação.</p>
+                    <h3>Minhas Metas de Estudo</h3>
+                    <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 15px;">Acompanhe os tópicos que está a estudar atualmente.</p>
+                    
+                    <form id="study-list-form">
+                        <div style="display: flex; gap: 15px; margin-bottom: 15px;">
+                            <div class="input-group" style="flex: 2; margin-bottom: 0;">
+                                <label>Tópico / Tecnologia</label>
+                                <input type="text" id="study-list-topic" placeholder="Ex: Microsserviços com FastAPI" required autocomplete="off">
+                            </div>
+                            <div class="input-group" style="flex: 1; margin-bottom: 0;">
+                                <label>Status</label>
+                                <select id="study-list-status" required style="width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 8px;">
+                                    <option value="A Fazer">A Fazer</option>
+                                    <option value="Em Andamento">Em Andamento</option>
+                                    <option value="Concluído">Concluído</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-primary">Guardar Meta</button>
+                    </form>
+
+                    <div id="study-list-container" style="margin-top: 20px;"></div>
+                </div>
+
+                <div class="card">
+                    <h3>Agente IA (Gerador de Cronograma)</h3>
+                    <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 15px;">Peça à IA para planear um roteiro de estudos.</p>
+                    
                     <form id="ai-study-form">
                         <div class="input-group">
-                            <label>O que você quer aprender?</label>
-                            <input type="text" id="study-topic" placeholder="Ex: Microsserviços" required autocomplete="off">
+                            <label>O que quer aprender?</label>
+                            <input type="text" id="study-topic" placeholder="Ex: Arquitetura de Microsserviços" required autocomplete="off">
                         </div>
                         <div class="input-group">
                             <label>Material Base (Links ou Textos)</label>
-                            <input type="text" id="study-material" placeholder="Ex: Doc Oficial" required autocomplete="off">
+                            <input type="text" id="study-material" placeholder="Ex: Documentação oficial" required autocomplete="off">
                         </div>
                         <div class="input-group" style="width: 150px;">
                             <label>Quantos dias?</label>
                             <input type="number" id="study-days" value="3" min="1" max="10" required>
                         </div>
-                        <button type="submit" class="btn-primary" id="btn-study-analyze">Gerar Cronograma</button>
+                        <button type="submit" class="btn-primary" id="btn-study-analyze" style="background-color: #1e40af;">Gerar Plano com IA</button>
                     </form>
+
                     <div class="ai-result" id="study-result-box" style="display: none; border-color: #bfdbfe; background: #eff6ff;">
-                        <h4 style="color: #1e40af;">📅 Cronograma Gerado!</h4>
+                        <h4 style="color: #1e40af;">Plano Gerado!</h4>
                         <div id="schedule-container" style="margin-top: 15px;"></div>
                     </div>
                 </div>
@@ -165,41 +222,188 @@
 
             <!-- SECÇÃO: REFEIÇÕES -->
             <section id="sec-meals" class="page-section">
-                <h1 class="section-title">Organização de Refeições</h1>
-                <div class="card"><p>Em breve: Planeamento alimentar.</p></div>
+                <h1 class="section-title">Planeamento Alimentar</h1>
+                
+                <div class="card">
+                    <h3>Registar Refeição</h3>
+                    <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 15px;">Organiza a tua dieta diária e refeições principais.</p>
+                    
+                    <form id="meal-form">
+                        <div style="display: flex; gap: 15px; margin-bottom: 15px;">
+                            <div class="input-group" style="flex: 1; margin-bottom: 0;">
+                                <label>Dia da Semana</label>
+                                <select id="meal-day" required style="width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 8px;">
+                                    <option value="Segunda-feira">Segunda-feira</option>
+                                    <option value="Terça-feira">Terça-feira</option>
+                                    <option value="Quarta-feira">Quarta-feira</option>
+                                    <option value="Quinta-feira">Quinta-feira</option>
+                                    <option value="Sexta-feira">Sexta-feira</option>
+                                    <option value="Sábado">Sábado</option>
+                                    <option value="Domingo">Domingo</option>
+                                </select>
+                            </div>
+                            <div class="input-group" style="flex: 1; margin-bottom: 0;">
+                                <label>Refeição</label>
+                                <select id="meal-type" required style="width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 8px;">
+                                    <option value="Café da Manhã">Café da Manhã</option>
+                                    <option value="Almoço">Almoço</option>
+                                    <option value="Lanche">Lanche</option>
+                                    <option value="Jantar">Jantar</option>
+                                    <option value="Ceia">Ceia</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label>O que vai comer? (Descrição da Dieta)</label>
+                            <input type="text" id="meal-desc" placeholder="Ex: 4 Ovos mexidos, aveia e café preto" required autocomplete="off">
+                        </div>
+                        <button type="submit" class="btn-primary">Guardar Refeição</button>
+                    </form>
+                </div>
+
+                <div class="card">
+                    <h3>O Meu Cardápio da Semana</h3>
+                    <div id="meal-list-container" style="margin-top: 15px;"></div>
+                </div>
             </section>
 
             <!-- SECÇÃO: COMPROMISSOS -->
             <section id="sec-agenda" class="page-section">
                 <h1 class="section-title">Agenda Semanal</h1>
-                <div class="card"><p>Em breve: Compromissos do dia.</p></div>
+                
+                <div class="card">
+                    <h3>Registar Compromisso</h3>
+                    <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 15px;">Organiza os teus eventos, reuniões e tarefas com hora marcada.</p>
+                    
+                    <form id="agenda-form">
+                        <input type="hidden" id="agenda-id" value="">
+                        
+                        <div style="display: flex; gap: 15px; margin-bottom: 15px;">
+                            <div class="input-group" style="flex: 1; margin-bottom: 0;">
+                                <label>Dia da Semana</label>
+                                <select id="agenda-day" required style="width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 8px;">
+                                    <option value="Segunda-feira">Segunda-feira</option>
+                                    <option value="Terça-feira">Terça-feira</option>
+                                    <option value="Quarta-feira">Quarta-feira</option>
+                                    <option value="Quinta-feira">Quinta-feira</option>
+                                    <option value="Sexta-feira">Sexta-feira</option>
+                                    <option value="Sábado">Sábado</option>
+                                    <option value="Domingo">Domingo</option>
+                                </select>
+                            </div>
+                            <div class="input-group" style="flex: 1; margin-bottom: 0;">
+                                <label>Horário</label>
+                                <input type="time" id="agenda-time" required style="width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 8px;">
+                            </div>
+                            <div class="input-group" style="flex: 1; margin-bottom: 0;">
+                                <label>Tipo</label>
+                                <select id="agenda-type" required style="width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 8px;">
+                                    <option value="Profissional">Profissional</option>
+                                    <option value="Pessoal">Pessoal</option>
+                                    <option value="Estudo">Estudo</option>
+                                    <option value="Saúde">Saúde</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label>Descrição do Compromisso</label>
+                            <input type="text" id="agenda-title" placeholder="Ex: Reunião de Daily com a Squad Core" required autocomplete="off">
+                        </div>
+                        <button type="submit" class="btn-primary">Guardar Compromisso</button>
+                    </form>
+                </div>
+
+                <div class="card">
+                    <h3>Os Meus Eventos</h3>
+                    <div id="agenda-list-container" style="margin-top: 15px;"></div>
+                </div>
             </section>
 
-            <!-- SECÇÃO: GASTOS E IA (O que já fizemos) -->
+            <!-- SECÇÃO: GASTOS E IA -->
             <section id="sec-finances" class="page-section">
                 <h1 class="section-title">Gestão Financeira & Agente IA</h1>
                 
-                <div class="card">
-                    <h3>🤖 Registar Gasto (IA)</h3>
+                <!-- 1. Receitas Mensais -->
+                <div class="card" style="border-left: 4px solid #16a34a;">
+                    <h3 style="color: #166534;">Entradas / Receitas Mensais</h3>
+                    <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 15px;">Cadastre seu salário, bolsas ou rendas extras.</p>
+                    
+                    <form id="income-form">
+                        <input type="hidden" id="income-id" value="">
+                        <div style="display: flex; gap: 15px; margin-bottom: 15px;">
+                            <div class="input-group" style="flex: 2; margin-bottom: 0;">
+                                <label>Origem da Receita</label>
+                                <input type="text" id="income-source" placeholder="Ex: Salário Vivo / Bolsa" required autocomplete="off">
+                            </div>
+                            <div class="input-group" style="flex: 1; margin-bottom: 0;">
+                                <label>Valor (R$)</label>
+                                <input type="number" step="0.01" id="income-amount" placeholder="1500.00" required>
+                            </div>
+                            <div class="input-group" style="flex: 1; margin-bottom: 0;">
+                                <label>Data de Recebimento</label>
+                                <input type="number" min="1" max="31" id="income-day" placeholder="Ex: 5" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-primary" style="background-color: #166534;">Adicionar Receita</button>
+                    </form>
+
+                    <div id="income-list-container" style="margin-top: 20px;"></div>
+                    
+                    <div style="margin-top: 15px; padding-top: 15px; border-top: 2px dashed var(--border-color); text-align: right;">
+                        <strong>Total de Receitas: <span style="color: #16a34a; font-size: 18px;">R$ <span id="income-total-amount">0.00</span></span></strong>
+                    </div>
+                </div>
+
+                <!-- 2. Gestão Manual (Gastos Fixos) -->
+                <div class="card" style="border-left: 4px solid #dc2626;">
+                    <h3 style="color: #991b1b;">Custos Fixos Mensais</h3>
+                    <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 15px;">Cadastre suas despesas recorrentes (Aluguel, Internet, Assinaturas).</p>
+                    
+                    <form id="fixed-expense-form">
+                        <input type="hidden" id="fixed-expense-id" value="">
+                        <div style="display: flex; gap: 15px; margin-bottom: 15px;">
+                            <div class="input-group" style="flex: 2; margin-bottom: 0;">
+                                <label>Descrição</label>
+                                <input type="text" id="fixed-expense-desc" placeholder="Ex: Conta de Luz" required autocomplete="off">
+                            </div>
+                            <div class="input-group" style="flex: 1; margin-bottom: 0;">
+                                <label>Valor (R$)</label>
+                                <input type="number" step="0.01" id="fixed-expense-amount" placeholder="150.00" required>
+                            </div>
+                            <div class="input-group" style="flex: 1; margin-bottom: 0;">
+                                <label>Vencimento (Dia)</label>
+                                <input type="number" min="1" max="31" id="fixed-expense-day" placeholder="Ex: 10" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-primary" style="background-color: #991b1b;">Adicionar Custo Fixo</button>
+                    </form>
+
+                    <div id="fixed-expense-list-container" style="margin-top: 20px;"></div>
+                    
+                    <div style="margin-top: 15px; padding-top: 15px; border-top: 2px dashed var(--border-color); text-align: right;">
+                        <strong>Total Fixo Mensal: <span style="color: #dc2626; font-size: 18px;">R$ <span id="fixed-total-amount">0.00</span></span></strong>
+                    </div>
+                </div>
+
+                <!-- 3. Agente Financeiro (Gastos Variáveis) -->
+                <div class="card" style="border-left: 4px solid #2563eb;">
+                    <h3 style="color: #1e40af;">Registar Gasto do Dia (IA)</h3>
+                    <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 15px;">Use texto natural para gastos do dia a dia (iFood, Uber, farmácia).</p>
                     <form id="ai-expense-form">
                         <div class="input-group">
                             <input type="text" id="expense-text" placeholder="Ex: Pedi um lanche no iFood por 50 reais" required autocomplete="off">
                         </div>
-                        <button type="submit" class="btn-primary" id="btn-analyze">Analisar com IA</button>
+                        <button type="submit" class="btn-primary" id="btn-analyze" style="background-color: #2563eb;">Analisar e Guardar com IA</button>
                     </form>
 
-                    <div class="ai-result" id="ai-result-box">
-                        <h4>✅ Gasto Registado!</h4>
+                    <div class="ai-result" id="ai-result-box" style="display: none; border-color: #bfdbfe; background: #eff6ff;">
+                        <h4 style="color: #1e40af;">Gasto Registado!</h4>
                         <p><strong>Valor:</strong> R$ <span id="res-amount"></span></p>
                         <p><strong>Categoria:</strong> <span id="res-category"></span></p>
                         <p><strong>Descrição:</strong> <span id="res-desc"></span></p>
                     </div>
                 </div>
-                
-                <div class="card">
-                    <h3>Gastos Fixos Mensais</h3>
-                    <p>Em breve: Tabela de gestão manual de custos fixos.</p>
-                </div>
+
             </section>
 
         </main>
